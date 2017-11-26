@@ -18,13 +18,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        Intent notificationIntent = new Intent("android.media.action.DISPLAY_NOTIFICATION");
-        notificationIntent.addCategory("android.intent.category.DEFAULT");
-
+        Intent notificationIntent = new Intent(this, AlarmReceiver.class);
         PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.SECOND, 15);
+        cal.add(Calendar.SECOND, 5);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), broadcast);
     }
 }
